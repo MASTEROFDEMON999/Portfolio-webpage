@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Rock, Paper, Scissors</title>
+    <link rel="stylesheet" href="C:\Users\argha\OneDrive\Desktop\something3.css">
+</head>
+<body>
+    <h1>Rock, Paper, Scissors</h1>
+    <p>Enter your choice:</p>
+    <input type="text" id="playerChoice" placeholder="Rock or paper or scissors">
+    <button onclick="playRound()">Play Round</button>
+    <p id="result"></p>
+    <script>
+        function getComputerChoice() {
+            const choices = ["rock", "paper", "scissors"];
+            return choices[Math.floor(Math.random() * choices.length)];
+        }
+
+        function determineWinner(playerChoice, computerChoice) {
+            if (playerChoice === computerChoice) {
+                return "It's a tie!";
+            } else if (
+                (playerChoice === "rock" && computerChoice === "scissors") ||
+                (playerChoice === "paper" && computerChoice === "rock") ||
+                (playerChoice === "scissors" && computerChoice === "paper")
+            ) {
+                return "You win!";
+            } else {
+                return "You lose!";
+            }
+        }
+
+        function playRound() {
+            const playerChoice = document.getElementById("playerChoice").value.toLowerCase();
+            const validChoices = ["rock", "paper", "scissors"];
+
+            if (validChoices.includes(playerChoice)) {
+                const computerChoice = getComputerChoice();
+                const result = determineWinner(playerChoice, computerChoice);
+                document.getElementById("result").textContent = `You chose ${playerChoice}. The computer chose ${computerChoice}. ${result}`;
+            } else {
+                document.getElementById("result").textContent = "Invalid choice. Please enter rock, paper, or scissors.";
+            }
+        }
+
+        // Add event listener for Enter key press
+        document.getElementById("playerChoice").addEventListener("keydown", function(event) {
+            if (event.key === "Enter") {
+                playRound();
+            }
+        });
+    </script>
+    <pre>
+
+
+        
+    </pre>
+    <a href="argha.html" class="btn back-button"><b>Back</b></a>
+</body>
+</html>
